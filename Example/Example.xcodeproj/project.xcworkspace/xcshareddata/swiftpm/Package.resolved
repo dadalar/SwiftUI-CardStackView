@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
+        "state": {
+          "branch": null,
+          "revision": "114882386a815f4a2e6d8f2f7ee4857acd372438",
+          "version": "1.7.2"
+        }
+      },
+      {
+        "package": "CardStack",
+        "repositoryURL": "https://github.com/dadalar/SwiftUI-CardStackView.git",
+        "state": {
+          "branch": "master",
+          "revision": "61d257146c2d4a519a9a7ae727cc2471275e6465",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
