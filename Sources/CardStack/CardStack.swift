@@ -8,14 +8,14 @@ public struct CardStack<Direction, ID: Hashable, Data: RandomAccessCollection, C
     private let direction: (Double) -> Direction?
     private let data: Data
     private let id: KeyPath<Data.Element, ID>
-    private let onSwipe: (Direction) -> ()
+    private let onSwipe: (Data.Element, Direction) -> ()
     private let content: (Data.Element, Direction?, Bool) -> Content
 
     public init(
         direction: @escaping (Double) -> Direction?,
         data: Data,
         id: KeyPath<Data.Element, ID>,
-        onSwipe: @escaping (Direction) -> (),
+        onSwipe: @escaping (Data.Element, Direction) -> (),
         @ViewBuilder content: @escaping (Data.Element, Direction?, Bool) -> Content
     ) {
         self.direction = direction
@@ -45,8 +45,8 @@ public struct CardStack<Direction, ID: Hashable, Data: RandomAccessCollection, C
             direction: direction,
             isOnTop: relativeIndex == 0,
             onSwipe: { direction in
+                self.onSwipe(self.data[index], direction)
                 self.currentIndex = self.data.index(after: index)
-                self.onSwipe(direction)
             },
             content: { direction in
                 self.content(self.data[index], direction, relativeIndex == 0)
@@ -69,7 +69,7 @@ public extension CardStack where Data.Element: Identifiable, ID == Data.Element.
     init(
         direction: @escaping (Double) -> Direction?,
         data: Data,
-        onSwipe: @escaping (Direction) -> (),
+        onSwipe: @escaping (Data.Element, Direction) -> (),
         @ViewBuilder content: @escaping (Data.Element, Direction?, Bool) -> Content
     ) {
         self.init(
@@ -88,7 +88,7 @@ public extension CardStack where Data.Element: Hashable, ID == Data.Element {
     init(
         direction: @escaping (Double) -> Direction?,
         data: Data,
-        onSwipe: @escaping (Direction) -> (),
+        onSwipe: @escaping (Data.Element, Direction) -> (),
         @ViewBuilder content: @escaping (Data.Element, Direction?, Bool) -> Content
     ) {
         self.init(
