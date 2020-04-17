@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftUICardStack'
-  s.version          = '0.0.1'
+  s.version          = '0.0.3'
   s.summary          = 'A easy-to-use SwiftUI view for Tinder like cards on iOS, macOS & watchOS.'
 
   s.homepage         = 'https://github.com/dadalar/SwiftUI-CardStackView'

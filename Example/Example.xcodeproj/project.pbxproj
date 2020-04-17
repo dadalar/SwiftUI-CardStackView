@@ -13,7 +13,7 @@
 		FBB08B742445186500385E5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB08B732445186500385E5A /* Assets.xcassets */; };
 		FBB08B772445186500385E5A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBB08B762445186500385E5A /* Preview Assets.xcassets */; };
 		FBB08B7A2445186500385E5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBB08B782445186500385E5A /* LaunchScreen.storyboard */; };
-		FBF3C4E52449BD4B000AC410 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = FBF3C4E42449BD4B000AC410 /* CardStack */; };
+		FBF3C4E8244A2DD4000AC410 /* CardStack in Frameworks */ = {isa = PBXBuildFile; productRef = FBF3C4E7244A2DD4000AC410 /* CardStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBF3C4E52449BD4B000AC410 /* CardStack in Frameworks */,
+				FBF3C4E8244A2DD4000AC410 /* CardStack in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +94,7 @@
 			);
 			name = iOSExample;
 			packageProductDependencies = (
-				FBF3C4E42449BD4B000AC410 /* CardStack */,
+				FBF3C4E7244A2DD4000AC410 /* CardStack */,
 			);
 			productName = Example;
 			productReference = FBB08B6A2445186200385E5A /* CardStackExample.app */;
@@ -125,7 +125,7 @@
 			);
 			mainGroup = FBB08B612445186200385E5A;
 			packageReferences = (
-				FBF3C4E32449BD4B000AC410 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */,
+				FBF3C4E6244A2DD4000AC410 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */,
 			);
 			productRefGroup = FBB08B6B2445186200385E5A /* Products */;
 			projectDirPath = "";
@@ -352,20 +352,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FBF3C4E32449BD4B000AC410 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */ = {
+		FBF3C4E6244A2DD4000AC410 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dadalar/SwiftUI-CardStackView.git";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.2;
+				version = 0.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FBF3C4E42449BD4B000AC410 /* CardStack */ = {
+		FBF3C4E7244A2DD4000AC410 /* CardStack */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FBF3C4E32449BD4B000AC410 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
+			package = FBF3C4E6244A2DD4000AC410 /* XCRemoteSwiftPackageReference "SwiftUI-CardStackView" */;
 			productName = CardStack;
 		};
 /* End XCSwiftPackageProductDependency section */
