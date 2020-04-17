@@ -85,8 +85,8 @@ struct Basic: View {
         CardStack(
             direction: LeftRight.direction,
             data: data,
-            onSwipe: { direction in
-                print("Swiped to \(direction)")
+            onSwipe: { card, direction in
+                print("Swiped \(card.name) to \(direction)")
             },
             content: { person, _, _ in
                 CardView(person: person)
@@ -106,8 +106,8 @@ struct Thumbs: View {
         CardStack(
             direction: LeftRight.direction,
             data: data,
-            onSwipe: { direction in
-                print("Swiped to \(direction)")
+            onSwipe: { card, direction in
+                print("Swiped \(card.name) to \(direction)")
             },
             content: { person, direction, _ in
                 CardViewWithThumbs(person: person, direction: direction)
@@ -127,7 +127,7 @@ struct AddingCards: View {
         CardStack(
             direction: LeftRight.direction,
             data: data,
-            onSwipe: { _ in
+            onSwipe: { _, _ in
                 self.data.append(Person.mock.randomElement()!)
             },
             content: { person, _, _ in
@@ -149,8 +149,8 @@ struct ReloadCards: View {
         CardStack(
             direction: LeftRight.direction,
             data: data,
-            onSwipe: { direction in
-                print("Swiped to \(direction)")
+            onSwipe: { card, direction in
+                print("Swiped \(card.name) to \(direction)")
             },
             content: { person, _, _ in
                 CardView(person: person)
@@ -191,8 +191,8 @@ struct CustomDirection: View {
         CardStack(
             direction: MyDirection.direction,
             data: data,
-            onSwipe: { direction in
-                print("Swiped to \(direction)")
+            onSwipe: { card, direction in
+                print("Swiped \(card.name) to \(direction)")
             },
             content: { person, _, _ in
                 CardView(person: person)
@@ -212,8 +212,8 @@ struct CustomConfiguration: View {
         CardStack(
             direction: LeftRight.direction,
             data: data,
-            onSwipe: { direction in
-                print("Swiped to \(direction)")
+            onSwipe: { card, direction in
+                print("Swiped \(card.name) to \(direction)")
             },
             content: { person, _, _ in
                 CardView(person: person)

@@ -85,7 +85,7 @@ public extension CardStack where Data.Element: Identifiable, ID == Data.Element.
 
 public extension CardStack where Data.Element: Hashable, ID == Data.Element {
 
-    init(
+    init(        
         direction: @escaping (Double) -> Direction?,
         data: Data,
         onSwipe: @escaping (Data.Element, Direction) -> (),

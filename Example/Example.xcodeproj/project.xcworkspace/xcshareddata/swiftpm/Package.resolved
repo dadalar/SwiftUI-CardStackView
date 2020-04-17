@@ -14,9 +14,9 @@
         "package": "CardStack",
         "repositoryURL": "https://github.com/dadalar/SwiftUI-CardStackView.git",
         "state": {
-          "branch": "master",
-          "revision": "61d257146c2d4a519a9a7ae727cc2471275e6465",
-          "version": null
+          "branch": null,
+          "revision": "55408cac8f9ab8416526bff6f11b05a3d75c579f",
+          "version": "0.0.2"
         }
       }
     ]
