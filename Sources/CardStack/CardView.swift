@@ -60,7 +60,7 @@ struct CardView<Direction, Content: View>: View {
 
   private func swipeDirection(_ geometry: GeometryProxy) -> Direction? {
     guard let direction = direction(degree) else { return nil }
-    let threshold = min(geometry.size.width, geometry.size.height) / 2
+    let threshold = min(geometry.size.width, geometry.size.height) * configuration.swipeThreshold
     let distance = hypot(translation.width, translation.height)
     return distance > threshold ? direction : nil
   }
