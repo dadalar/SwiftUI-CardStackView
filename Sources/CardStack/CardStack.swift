@@ -61,6 +61,7 @@ where Data.Index: Hashable {
           )
       }
     )
+    .zIndex(Double(data.count - data.distance(from: data.startIndex, to: index)))
   }
 
 }
