@@ -3,11 +3,18 @@ import SwiftUI
 struct CardView<Direction, Content: View>: View {
   @Environment(\.cardStackConfiguration) private var configuration: CardStackConfiguration
   @State private var translation: CGSize = .zero
+  @State private var draggingState: CardDraggingState = .idle
 
   private let direction: (Double) -> Direction?
   private let isOnTop: Bool
   private let onSwipe: (Direction) -> Void
   private let content: (Direction?) -> Content
+
+  private enum CardDraggingState {
+    case dragging
+    case ended
+    case idle
+  }
 
   init(
     direction: @escaping (Double) -> Direction?,
@@ -28,6 +35,7 @@ struct CardView<Direction, Content: View>: View {
         .offset(self.translation)
         .rotationEffect(self.rotation(geometry))
         .simultaneousGesture(self.isOnTop ? self.dragGesture(geometry) : nil)
+        .animation(draggingState == .dragging ? .easeInOut(duration: 0.05) : self.configuration.animation, value: translation)
     }
     .transition(transition)
   }
@@ -35,14 +43,19 @@ struct CardView<Direction, Content: View>: View {
   private func dragGesture(_ geometry: GeometryProxy) -> some Gesture {
     DragGesture()
       .onChanged { value in
+        self.draggingState = .dragging
         self.translation = value.translation
       }
       .onEnded { value in
-        self.translation = value.translation
+        draggingState = .ended
         if let direction = self.swipeDirection(geometry) {
-          withAnimation(self.configuration.animation) { self.onSwipe(direction) }
+          self.translation = value.translation
+          withAnimation(self.configuration.animation) {
+            self.onSwipe(direction)
+          }
         } else {
-          withAnimation { self.translation = .zero }
+          draggingState = .idle
+          self.translation = .zero
         }
       }
   }
