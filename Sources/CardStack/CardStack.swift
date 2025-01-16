@@ -28,18 +28,24 @@ where Data.Index: Hashable {
     self._currentIndex = State<Data.Index>(initialValue: data.startIndex)
   }
 
+  @ViewBuilder private func cardViewOrEmpty(index: Data.Index) -> some View {
+    let relativeIndex = self.data.distance(from: self.currentIndex, to: index)
+    if relativeIndex >= 0 && relativeIndex < self.configuration.maxVisibleCards {
+       self.card(index: index, relativeIndex: relativeIndex)
+    } else {
+       EmptyView()
+    }
+  }
+
   public var body: some View {
     ZStack {
-      ForEach(data.indices.reversed(), id: \.self) { index -> AnyView in
-        let relativeIndex = self.data.distance(from: self.currentIndex, to: index)
-        if relativeIndex >= 0 && relativeIndex < self.configuration.maxVisibleCards {
-          return AnyView(self.card(index: index, relativeIndex: relativeIndex))
-        } else {
-          return AnyView(EmptyView())
-        }
+      ForEach(data.indices.reversed(), id: \.self) { index in
+        cardViewOrEmpty(index: index)
+          .zIndex(Double(self.data.distance(from: index, to: self.data.startIndex)))
       }
     }
   }
+
 
   private func card(index: Data.Index, relativeIndex: Int) -> some View {
     CardView(
