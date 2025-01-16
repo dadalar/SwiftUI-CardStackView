@@ -1,9 +1,11 @@
 import SwiftUI
+import Combine
 
 struct CardView<Direction, Content: View>: View {
   @Environment(\.cardStackConfiguration) private var configuration: CardStackConfiguration
   @State private var translation: CGSize = .zero
   @State private var draggingState: CardDraggingState = .idle
+  @GestureState private var isDragging: Bool = false
 
   private let direction: (Double) -> Direction?
   private let isOnTop: Bool
@@ -28,7 +30,7 @@ struct CardView<Direction, Content: View>: View {
     self.content = content
   }
 
-  var body: some View {
+  @ViewBuilder var cardView: some View {
     GeometryReader { geometry in
       self.content(self.swipeDirection(geometry))
         .disabled(self.translation != .zero)
@@ -40,8 +42,34 @@ struct CardView<Direction, Content: View>: View {
     .transition(transition)
   }
 
+  private func cancelDragging() {
+    draggingState = .idle
+    translation = .zero
+  }
+
+  var body: some View {
+    if #available(iOS 14.0, *) {
+      cardView
+      .onChange(of: isDragging) { newValue in
+        if !newValue && draggingState == .dragging {
+          cancelDragging()
+        }
+      }
+    } else { // iOS 13.0, *
+      cardView
+        .onReceive(Just(isDragging)) { newValue in
+          if !newValue && draggingState == .dragging {
+            cancelDragging()
+          }
+        }
+    }
+  }
+
   private func dragGesture(_ geometry: GeometryProxy) -> some Gesture {
     DragGesture()
+      .updating($isDragging) { value, state, transaction in
+        state = true
+      }
       .onChanged { value in
         self.draggingState = .dragging
         self.translation = value.translation
@@ -54,8 +82,7 @@ struct CardView<Direction, Content: View>: View {
             self.onSwipe(direction)
           }
         } else {
-          draggingState = .idle
-          self.translation = .zero
+          cancelDragging()
         }
       }
   }
