@@ -24,6 +24,7 @@ struct CardView<Direction, Content: View>: View {
   var body: some View {
     GeometryReader { geometry in
       self.content(self.swipeDirection(geometry))
+        .disabled(self.translation != .zero)
         .offset(self.translation)
         .rotationEffect(self.rotation(geometry))
         .simultaneousGesture(self.isOnTop ? self.dragGesture(geometry) : nil)
